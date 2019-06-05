@@ -1,0 +1,23 @@
+{
+  "name": "ticket_viewer",
+  "version": "1.0.0",
+  "description": "a ticket viewer to display the tickets list as well as individual ticket details from Zendesk API",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jliclaire/Zendesk-Ticket-Viewer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jliclaire/Zendesk-Ticket-Viewer/issues"
+  },
+  "homepage": "https://github.com/jliclaire/Zendesk-Ticket-Viewer#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  }
+}
