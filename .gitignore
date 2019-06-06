@@ -1,0 +1,2 @@
+# Ignore decrypting credentials.
+*.env
