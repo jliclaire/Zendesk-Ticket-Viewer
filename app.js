@@ -1,43 +1,88 @@
-// import modules class Data from data.js
-const Data = require("./data.js");
-
 // npm readline-sync to take user input from command line
 const readline = require("readline-sync");
 
-//create an instance of the data back from API
+//import functions to display menu and display page layout
+const display = require("./display.js");
+
+// import modules class Data from data.js
+const Data = require("./data.js");
+
+// import modules class Pagination from data.js
+const Pagination = require("./pagination.js");
+
+//create an instance of the data came back from API
 let dataSet = new Data();
 
-const showMenu = () => {
-  console.clear();
-  console.log("************Ticket Viewer**************");
-  console.log("Please choose one from below menu (1, 2 or 3)");
-  console.log("1. View all tickets\n2. View one ticket\n3. Quit");
-};
+let runningMainMenu = true;
 
-const userSelection = async () => {
-  const selection = readline.question(
-    "Please choose one from the above menu\n=> "
-  );
+const selectFromMainMenu = async () => {
+  display.showMainMenu();
+  console.log("Loading Tickets ...");
   await dataSet.getTicketsData();
-  allTickets = dataSet.ticketsData();
+  allTickets = await dataSet.ticketsData();
 
-  displayAllTickets(allTickets);
+  while (runningMainMenu) {
+    let mainMenuSelection = display.getMainMenuSelection();
+    switch (mainMenuSelection) {
+      case "1":
+        page = new Pagination(allTickets);
+        page.displayPage();
+        findThePage(page, allTickets);
+        break;
+      case "2":
+        console.log("You have successfully quited the program");
+        runningMainMenu = false;
+        break;
+      default:
+        const errorMessage = `"${mainMenuSelection}" is not a valid selection. Please select from the menu`;
+        display.showMainMenu(errorMessage);
+    }
+  }
 };
 
-const displayAllTickets = arr => {
-  console.clear();
-  newArr = arr.slice(0, 9);
-  console.log(`Ticket_ID | Ticket_Status | Ticket_Subject   \n`);
-  newArr.forEach(ticket => {
-    console.log(
-      `     ${ticket.id}     |    ${ticket.status}      | ${ticket.subject}\n`
-    );
-  });
+let searchingPage = true;
+const findThePage = () => {
+  while (searchingPage) {
+    display.showViewTicketOptions();
+    let viewTicketsSelection = display.getViewTicketOptions();
+
+    switch (viewTicketsSelection) {
+      case "1":
+        page.goToFirstPage();
+        page.displayPage();
+        break;
+      case "2":
+        page.goToLastPage();
+        page.displayPage();
+        break;
+      case "3":
+        page.goToPreviousPage();
+        page.displayPage();
+        break;
+      case "4":
+        page.goToNextPage();
+        page.displayPage();
+        break;
+      case "5":
+        page.goToPage();
+        page.displayPage();
+        break;
+      case "6":
+        const ticketID = readline.question("\nSelect a ticket to view:\n=> ");
+        page.displayTicket(ticketID);
+        break;
+      case "7":
+        console.log("You have successfully quited the program");
+        searchingPage = false;
+        runningMainMenu = false;
+        break;
+      default:
+        const errorMessage = `"${viewTicketsSelection}" is not a valid selection. Please select from the menu`;
+        display.formatErrordisplay(errorMessage);
+    }
+  }
 };
 
-// getTicketsData();
-showMenu();
+selectFromMainMenu();
 
-userSelection();
-
-module.exports = { displayAllTickets };
+module.exports = { selectFromMainMenu };
