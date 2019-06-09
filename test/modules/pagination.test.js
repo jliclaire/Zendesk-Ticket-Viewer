@@ -3,10 +3,9 @@ const expect = require("chai").expect;
 // const app = require("../app");
 const fileSystem = require("fs");
 
-const Pagination = require("../pagination.js");
+const Pagination = require("../../modules/pagination.js");
 
 //use the data from tickets.json to run testing
-
 const loadtestData = () => {
   const testTicketsData = fileSystem.readFileSync(
     path.join(__dirname + "/tickets.json"),

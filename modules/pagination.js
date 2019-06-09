@@ -4,14 +4,9 @@ const display = require("./display.js");
 module.exports = class Pagination {
   constructor(tickets, pageSize = 15) {
     this.tickets = tickets;
-    if (this.tickets === []) {
-      const errorMessage = `No tickets received!`;
-      display.formatErrorDisplay(errorMessage);
-    } else {
-      this.pageSize = pageSize;
-      this.currentPageNumber = 1;
-      this.lastPageNumber = Math.ceil(this.tickets.length / this.pageSize);
-    }
+    this.pageSize = pageSize;
+    this.currentPageNumber = 1;
+    this.lastPageNumber = Math.ceil(this.tickets.length / this.pageSize);
   }
 
   goToFirstPage() {

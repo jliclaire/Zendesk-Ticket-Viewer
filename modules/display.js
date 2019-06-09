@@ -8,7 +8,6 @@ const formatErrorDisplay = (error = "") => {
     console.log(
       "======================================================================================================"
     );
-
     console.log(`!!!ERROR: ${error}`);
     console.log(
       "======================================================================================================\n"
@@ -19,7 +18,7 @@ const formatErrorDisplay = (error = "") => {
 //format to display the ticket list header
 const formatTicketListHeader = () => {
   console.clear();
-  console.log(` Ticket_ID | Ticket_Status | Ticket_Subject   \n`);
+  console.log(" Ticket_ID | Ticket_Status | Ticket_Subject   \n");
 };
 
 //format to display the ticket subjects

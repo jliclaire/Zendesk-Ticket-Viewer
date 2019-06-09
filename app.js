@@ -1,11 +1,11 @@
 //import functions to display menu and page layout
-const display = require("./display.js");
+const display = require("./modules/display.js");
 
 // import modules class Data from data.js
-const Data = require("./data.js");
+const Data = require("./modules/data.js");
 
 // import modules class Pagination from data.js
-const Pagination = require("./pagination.js");
+const Pagination = require("./modules/pagination.js");
 
 const runTicketViewer = async () => {
   display.loadingTicketsMessage();
