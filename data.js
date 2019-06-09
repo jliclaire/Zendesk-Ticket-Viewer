@@ -1,6 +1,9 @@
 // npm dotenv to handle credential info
 require("dotenv").config();
 
+//import functions to display menu and display page layout
+const display = require("./display.js");
+
 // npm axios to get API data from Zendesk account
 const axios = require("axios");
 
@@ -25,7 +28,9 @@ module.exports = class Data {
       this.tickets = response.data.tickets;
       return this.tickets;
     } catch {
-      console.log("Caught Error");
+      // if response.status =200
+      const errorMessage = "No response received!";
+      display.formatErrorDisplay(errorMessage);
     }
   }
 };

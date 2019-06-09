@@ -35,8 +35,10 @@ module.exports = class Pagination {
   }
 
   goToNextPage() {
-    if (this.currentPageNumber === 7) {
-      const errorMessage = `You are already on the last page!`;
+    if (this.currentPageNumber === this.lastPageNumber) {
+      const errorMessage = `You are already on the last page, page# ${
+        this.lastPageNumber
+      }!`;
       display.formatErrorDisplay(errorMessage);
     } else {
       this.currentPageNumber++;
@@ -49,7 +51,9 @@ module.exports = class Pagination {
       this.currentPageNumber = pageNumber;
       this.displayPage();
     } else {
-      const errorMessage = `Requested page number "${pageNumber}" does not exist!`;
+      const errorMessage = `Requested page number "${pageNumber}" does not exist! Please select a page number between 1 and ${
+        this.lastPageNumber
+      }`;
       display.formatErrorDisplay(errorMessage);
     }
   }
@@ -70,7 +74,10 @@ module.exports = class Pagination {
     pageTickets.forEach(ticket => {
       display.formatTicketList(ticket);
     });
-    display.formatCurrentPageNumber(this.currentPageNumber);
+    display.formatCurrentPageNumber(
+      this.currentPageNumber,
+      this.lastPageNumber
+    );
   }
 
   displayIndividualTicket(id) {

@@ -6,12 +6,12 @@ const formatErrorDisplay = (error = "") => {
   if (error !== "") {
     console.clear();
     console.log(
-      "==========================================================================================="
+      "======================================================================================================"
     );
 
     console.log(`!!!ERROR: ${error}`);
     console.log(
-      "===========================================================================================\n"
+      "======================================================================================================\n"
     );
   }
 };
@@ -30,9 +30,9 @@ const formatTicketList = ticket => {
 };
 
 // format to display page number under the list
-const formatCurrentPageNumber = pageNumber => {
+const formatCurrentPageNumber = (pageNumber, totalPage) => {
   console.log(
-    `************************************************Page ${pageNumber}*********************************************************\n`
+    `****************************************  Page ${pageNumber} / ${totalPage}  **********************************************\n`
   );
 };
 
@@ -40,35 +40,26 @@ const formatCurrentPageNumber = pageNumber => {
 const formatIndividualTicketDisplay = ticket => {
   console.clear();
   console.log(
-    "***************************************************************************************************************************"
+    "\n*********************************************************************************************************************************************************"
   );
-  console.log(`
-  ID: ${ticket.id}\n
-  Tags: ${ticket.tags}\n
-  Subject: ${ticket.subject}\n
-  Description: ${ticket.description}
-  `);
   console.log(
-    "***************************************************************************************************************************"
+    `ID: ${ticket.id}\nTags: ${ticket.tags}\nSubject: ${
+      ticket.subject
+    }\n\nDescription:\n${ticket.description}`
   );
-};
-
-const showMainMenu = (error = "") => {
-  console.clear();
-  formatErrorDisplay(error);
-  console.log("************Ticket Viewer**************");
-  console.log("Please choose one from below menu ");
-  console.log("1. View tickets\n2 Quit");
+  console.log(
+    "\n*********************************************************************************************************************************************************\n"
+  );
 };
 
 const showViewTicketOptions = (error = "") => {
   formatErrorDisplay(error);
-  console.log("Select a page to display or select a ticket to view: ");
+  console.log("Select a page to display or select a ticket to view:\n ");
   console.log(
-    "1. First Page  2. Last Page  3. Previous Page  4. Next Page  5. Go to a page  6. View a ticket  7. Quit the program"
+    "0. Back to Current Page  1. First Page  2. Last Page  3. Previous Page  4. Next Page  5. Go to a page  6. View a ticket  7. Quit the program"
   );
   console.log(
-    "***************************************************************************************************************************"
+    "\n*********************************************************************************************************************************************************"
   );
 };
 
@@ -76,30 +67,34 @@ const getViewTicketOptions = () => {
   return readline.question("Select =>");
 };
 
-const getMainMenuSelection = () => {
-  return readline.question(
-    "Please choose one from the above menu (1 or 2)\n=> "
-  );
-};
-
 const getIndividualTicketID = () => {
-  return readline.question("\nSelect a ticket to view:\n=> ");
+  return readline.question("\nSelect a ticket ID to view:\n=> ");
 };
 
 const getGoToPageNumber = () => {
-  return readline.question("\nSelect a page to view:\n=> ");
+  return readline.question("\nSelect a page number to view:\n=> ");
 };
 
+const logoutProgramMessage = () => {
+  console.log(
+    "You have successfully logged out the program. See you next time!"
+  );
+};
+
+const loadingTicketsMessage = () => {
+  console.clear();
+  console.log("Welcome!\nTickets are loading ...\n");
+};
 module.exports = {
   formatErrorDisplay,
-  showMainMenu,
   formatTicketListHeader,
   formatTicketList,
   getViewTicketOptions,
-  getMainMenuSelection,
   showViewTicketOptions,
   formatIndividualTicketDisplay,
   formatCurrentPageNumber,
   getIndividualTicketID,
-  getGoToPageNumber
+  getGoToPageNumber,
+  logoutProgramMessage,
+  loadingTicketsMessage
 };

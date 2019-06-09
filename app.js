@@ -1,7 +1,4 @@
-// npm readline-sync to take user input from command line
-const readline = require("readline-sync");
-
-//import functions to display menu and display page layout
+//import functions to display menu and page layout
 const display = require("./display.js");
 
 // import modules class Data from data.js
@@ -10,49 +7,25 @@ const Data = require("./data.js");
 // import modules class Pagination from data.js
 const Pagination = require("./pagination.js");
 
-//create an instance of the data came back from API
-let dataSet = new Data();
+const runTicketViewer = async () => {
+  display.loadingTicketsMessage();
 
-let runningMainMenu = true;
-
-const selectFromMainMenu = async () => {
-  display.showMainMenu();
-  console.log("\n...Loading Tickets ...\n");
+  const dataSet = new Data(); //create an instance of the data came back from API
   await dataSet.getTicketsData();
-  allTickets = await dataSet.ticketsData();
+  allTickets = dataSet.ticketsData();
 
-  page = new Pagination(allTickets);
+  const page = new Pagination(allTickets);
+  page.displayPage();
 
-  while (runningMainMenu) {
-    let mainMenuSelection = display.getMainMenuSelection();
-
-    switch (mainMenuSelection) {
-      case "1":
-        page.displayPage();
-        findThePage();
-        break;
-      // case "2":
-      //   const ticketID = display.getIndividualTicketID();
-      //   page.displayIndividualTicket(ticketID);
-      //   break;
-      case "2":
-        console.log("You have successfully quited the program");
-        runningMainMenu = false;
-        break;
-      default:
-        const errorMessage = `"${mainMenuSelection}" is not a valid selection. Please select from the menu`;
-        display.showMainMenu(errorMessage);
-    }
-  }
-};
-
-let searchingPage = true;
-const findThePage = () => {
-  while (searchingPage) {
+  let runningMenu = true;
+  while (runningMenu) {
     display.showViewTicketOptions();
-    let viewTicketsSelection = display.getViewTicketOptions();
+    let userSelection = display.getViewTicketOptions();
 
-    switch (viewTicketsSelection) {
+    switch (userSelection) {
+      case "0":
+        page.displayPage();
+        break;
       case "1":
         page.goToFirstPage();
         break;
@@ -74,17 +47,14 @@ const findThePage = () => {
         page.displayIndividualTicket(ticketID);
         break;
       case "7":
-        console.log("You have successfully quited the program");
-        searchingPage = false;
-        runningMainMenu = false;
+        display.logoutProgramMessage();
+        runningMenu = false;
         break;
       default:
-        const errorMessage = `"${viewTicketsSelection}" is not a valid selection. Please select from the menu`;
+        const errorMessage = `"${userSelection}" is not a valid selection. Please select one from below menu!`;
         display.formatErrorDisplay(errorMessage);
     }
   }
 };
 
-selectFromMainMenu();
-
-module.exports = { selectFromMainMenu };
+runTicketViewer();
