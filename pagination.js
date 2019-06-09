@@ -5,7 +5,8 @@ module.exports = class Pagination {
   constructor(tickets, pageSize = 15) {
     this.tickets = tickets;
     if (this.tickets === []) {
-      console.log("There is no tickets!");
+      const errorMessage = `No tickets received!`;
+      display.formatErrorDisplay(errorMessage);
     } else {
       this.pageSize = pageSize;
       this.currentPageNumber = 1;
@@ -15,35 +16,42 @@ module.exports = class Pagination {
 
   goToFirstPage() {
     this.currentPageNumber = 1;
+    this.displayPage();
   }
 
   goToLastPage() {
     this.currentPageNumber = this.lastPageNumber;
+    this.displayPage();
   }
 
   goToPreviousPage() {
     if (this.currentPageNumber === 1) {
-      console.log("You are already on the first page!");
+      const errorMessage = `You are already on the first page!`;
+      display.formatErrorDisplay(errorMessage);
+    } else {
+      this.currentPageNumber--;
+      this.displayPage();
     }
-    this.currentPageNumber--;
   }
 
   goToNextPage() {
     if (this.currentPageNumber === 7) {
-      console.log("You are already on the last page!");
+      const errorMessage = `You are already on the last page!`;
+      display.formatErrorDisplay(errorMessage);
+    } else {
+      this.currentPageNumber++;
+      this.displayPage();
     }
-    this.currentPageNumber++;
   }
 
   goToPage(pageNumber) {
-    if (
-      pageNumber < 1 ||
-      pageNumber > this.lastPageNumber ||
-      typeof pageNumber !== "number"
-    ) {
-      console.log(`Request page number "${pageNumber}" does not exist! `);
+    if (pageNumber > 0 && pageNumber <= this.lastPageNumber) {
+      this.currentPageNumber = pageNumber;
+      this.displayPage();
+    } else {
+      const errorMessage = `Requested page number "${pageNumber}" does not exist!`;
+      display.formatErrorDisplay(errorMessage);
     }
-    this.currentPageNumber = pageNumber;
   }
 
   getPageTickets() {
@@ -53,26 +61,26 @@ module.exports = class Pagination {
       indexOfTopListItem,
       indexOfBottomListItem
     );
-
     return ticketsOfThePage;
   }
 
   displayPage() {
-    console.clear();
     display.formatTicketListHeader();
     const pageTickets = this.getPageTickets();
     pageTickets.forEach(ticket => {
       display.formatTicketList(ticket);
     });
+    display.formatCurrentPageNumber(this.currentPageNumber);
   }
 
-  displayTicket(id) {
-    const ticketToView = this.tickets.find(ticket => {
-      console.log("ticket");
-      console.log(ticket);
-      return ticket.id === id;
-    });
-    display.formatTicketListHeader();
-    display.formatTicketList(ticketToView);
+  displayIndividualTicket(id) {
+    const IntegerID = Number(id);
+    if (IntegerID >= 1 && IntegerID <= this.tickets.length) {
+      const ticketToView = this.tickets.find(ticket => ticket.id === IntegerID);
+      display.formatIndividualTicketDisplay(ticketToView);
+    } else {
+      const errorMessage = `Requested ticket ID "${id}" does not exist! `;
+      display.formatErrorDisplay(errorMessage);
+    }
   }
 };

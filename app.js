@@ -17,18 +17,24 @@ let runningMainMenu = true;
 
 const selectFromMainMenu = async () => {
   display.showMainMenu();
-  console.log("Loading Tickets ...");
+  console.log("\n...Loading Tickets ...\n");
   await dataSet.getTicketsData();
   allTickets = await dataSet.ticketsData();
 
+  page = new Pagination(allTickets);
+
   while (runningMainMenu) {
     let mainMenuSelection = display.getMainMenuSelection();
+
     switch (mainMenuSelection) {
       case "1":
-        page = new Pagination(allTickets);
         page.displayPage();
-        findThePage(page, allTickets);
+        findThePage();
         break;
+      // case "2":
+      //   const ticketID = display.getIndividualTicketID();
+      //   page.displayIndividualTicket(ticketID);
+      //   break;
       case "2":
         console.log("You have successfully quited the program");
         runningMainMenu = false;
@@ -49,27 +55,23 @@ const findThePage = () => {
     switch (viewTicketsSelection) {
       case "1":
         page.goToFirstPage();
-        page.displayPage();
         break;
       case "2":
         page.goToLastPage();
-        page.displayPage();
         break;
       case "3":
         page.goToPreviousPage();
-        page.displayPage();
         break;
       case "4":
         page.goToNextPage();
-        page.displayPage();
         break;
       case "5":
-        page.goToPage();
-        page.displayPage();
+        const goToPageNumber = display.getGoToPageNumber();
+        page.goToPage(goToPageNumber);
         break;
       case "6":
-        const ticketID = readline.question("\nSelect a ticket to view:\n=> ");
-        page.displayTicket(ticketID);
+        const ticketID = display.getIndividualTicketID();
+        page.displayIndividualTicket(ticketID);
         break;
       case "7":
         console.log("You have successfully quited the program");
@@ -78,7 +80,7 @@ const findThePage = () => {
         break;
       default:
         const errorMessage = `"${viewTicketsSelection}" is not a valid selection. Please select from the menu`;
-        display.formatErrordisplay(errorMessage);
+        display.formatErrorDisplay(errorMessage);
     }
   }
 };
