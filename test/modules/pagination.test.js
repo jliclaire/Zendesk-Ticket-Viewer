@@ -5,7 +5,7 @@ const fileSystem = require("fs");
 
 const Pagination = require("../../modules/pagination.js");
 
-//use the data from tickets.json to run testing
+//use the data from tickets.json as the fake data to run testing
 const loadtestData = () => {
   const testTicketsData = fileSystem.readFileSync(
     path.join(__dirname + "/tickets.json"),
@@ -20,8 +20,7 @@ const loadtestData = () => {
 const testTickets = loadtestData();
 const testPagination = new Pagination(testTickets);
 
-// console.log(testTickets);
-
+//test Pagination class methods
 describe("Pagination", () => {
   //testing class method goToFirstPage()
   describe("goToFirstPage", () => {
@@ -57,10 +56,11 @@ describe("Pagination", () => {
       testPagination.goToPreviousPage();
       expect(testPagination.currentPageNumber).to.equal(expectPageNumber - 1);
     });
-    it("should set the value of current page number to 0", () => {
+    it("should set the value of current page number to 1 when reached the first page", () => {
+      const expectedPageNumber = 1;
       testPagination.currentPageNumber = 1;
       testPagination.goToPreviousPage();
-      expect(testPagination.currentPageNumber).to.equal(0);
+      expect(testPagination.currentPageNumber).to.equal(expectedPageNumber);
     });
   });
 
@@ -71,19 +71,20 @@ describe("Pagination", () => {
       testPagination.goToNextPage();
       expect(testPagination.currentPageNumber).to.equal(expectPageNumber + 1);
     });
-    it("should set the value of current page number to 8", () => {
+    it("should set the value of current page number to 7 when reached the last page", () => {
+      const expectedPageNumber = 7;
       testPagination.currentPageNumber = 7;
       testPagination.goToNextPage();
-      expect(testPagination.currentPageNumber).to.equal(8);
+      expect(testPagination.currentPageNumber).to.equal(expectedPageNumber);
     });
   });
 
   //testing class method goToPage()
   describe("goToPage", () => {
     it("should return a page", () => {
-      const expectPageNumber = 5;
+      const expectedPageNumber = 5;
       testPagination.goToPage(5);
-      expect(testPagination.currentPageNumber).to.equal(expectPageNumber);
+      expect(testPagination.currentPageNumber).to.equal(expectedPageNumber);
     });
     it("should not display a page if the page number passed in does not exist", () => {
       const notExpectedPageNumbers = [-5, 0, 8, 1000, "hi"];
@@ -94,13 +95,19 @@ describe("Pagination", () => {
     });
   });
 
-  //testing class method displayPage()
+  //testing class method getPageTickets()
   describe("getPageTickets", () => {
-    it("should return a list of 15 tickets", () => {
-      const expectPageNumber = 2;
+    it("should return a list of 15 tickets for the first 6 pages", () => {
+      const expectPageNumber = Math.ceil(Math.random() * 6);
       testPagination.currentPageNumber = expectPageNumber;
       testPagination.getPageTickets();
       expect(testPagination.getPageTickets().length).to.equal(15);
+    });
+    it("should return a list of 10 tickets for the last page", () => {
+      const expectPageNumber = 7;
+      testPagination.currentPageNumber = expectPageNumber;
+      testPagination.getPageTickets();
+      expect(testPagination.getPageTickets().length).to.equal(10);
     });
     it("should return a list of tickets of that page number", () => {
       const expectPageNumber = 2;
