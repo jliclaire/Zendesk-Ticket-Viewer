@@ -7,53 +7,21 @@ const Data = require("./modules/data.js");
 // import Pagination class from modules to display tickets list and individual ticket
 const Pagination = require("./modules/pagination.js");
 
+// import runMenu function from modules to display viewing options
+const menu = require("./modules/menu.js");
+
 const runTicketViewer = async () => {
   display.loadingTicketsMessage(); // display loading data message to user
 
-  const dataSet = new Data(); //create an instance of the data came back from API
-  await dataSet.getTicketsData();
-  allTickets = dataSet.ticketsData();
+  const dataSet = new Data(); //create an instance of the Data class
+  await dataSet.getTicketsData(); // wait for data get back from API
+  allTickets = dataSet.ticketsData(); // store all tickets data
 
-  const page = new Pagination(allTickets);
-  page.displayPage();
+  const page = new Pagination(allTickets); // create an instance of the pagination class
+  page.displayPage(); // default display the list of the first 15 tickets
 
-  let runningMenu = true;
-  while (runningMenu) {
-    display.showViewTicketOptions();
-    let userSelection = display.getViewTicketOptions();
-    switch (userSelection) {
-      case "0":
-        page.displayPage();
-        break;
-      case "1":
-        page.goToFirstPage();
-        break;
-      case "2":
-        page.goToLastPage();
-        break;
-      case "3":
-        page.goToPreviousPage();
-        break;
-      case "4":
-        page.goToNextPage();
-        break;
-      case "5":
-        const goToPageNumber = display.getGoToPageNumber();
-        page.goToPage(goToPageNumber);
-        break;
-      case "6":
-        const ticketID = display.getIndividualTicketID();
-        page.displayIndividualTicket(ticketID);
-        break;
-      case "7":
-        display.logoutProgramMessage();
-        runningMenu = false;
-        break;
-      default:
-        const errorMessage = `"${userSelection}" is not a valid selection. Please select one from below menu!`;
-        display.formatErrorDisplay(errorMessage);
-    }
-  }
+  let runningMenu = true; // running the selection menu while the value of this variable is true
+  menu.runMenu(runningMenu, page); // display to users the options to select. pass pagination class method with all the tickets data
 };
 
 // run the application

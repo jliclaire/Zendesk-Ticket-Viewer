@@ -32,7 +32,7 @@ npm init
 
 - ### **dotenv**
 
-  A zero-dependency module that loads environment variables from a .env file (created in the root directory). Install dotenv to keep credentials from uploading to GitHub.
+  A zero-dependency module that loads environment variables from a .env file. Install dotenv to keep credentials from uploading to GitHub.
 
   _install with npm_
 
@@ -40,12 +40,7 @@ npm init
   npm install dotenv
   ```
 
-  To run this application, a .env file need to be setup in the root directory with below credentials
-
-  ```
-  USERNAME=jingli.claire@gmail.com
-  PASSWORD=zheng861423
-  ```
+  **To run this application, a .env file needs to be setup in the root directory with the authentication credentials**
 
 * ### **axios**
 
@@ -126,4 +121,7 @@ when above user activities occured, an error message will be displayed with the 
 # addtional informaton
 
 - The application has used async/await. It is part of ECMAScript 2017 and is not supported in Internet Explorer and older browsers.
-- About testing???
+
+# Author
+
+Jing Li - jingli.claire@gmail.com

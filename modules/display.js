@@ -1,6 +1,7 @@
-// npm readline-sync to take user input from command line
+// npm readline-sync to interact with the user by displaying a query to the user and take their input after the Enter key pressed
 const readlineSync = require("readline-sync");
 
+// console display layout/format
 //format to display error message on top of the page
 const formatErrorDisplay = (error = "") => {
   if (error !== "") {
@@ -51,6 +52,7 @@ const formatIndividualTicketDisplay = ticket => {
   );
 };
 
+// format to display the viewing menu
 const showViewTicketOptions = (error = "") => {
   formatErrorDisplay(error);
   console.log("Select a page to display or select a ticket to view:\n ");
@@ -62,28 +64,37 @@ const showViewTicketOptions = (error = "") => {
   );
 };
 
-const getViewTicketOptions = () => {
-  return readlineSync.question("Select =>");
+// greeting and goodbye message
+// display greet the user with a data loading message
+const loadingTicketsMessage = () => {
+  console.clear();
+  console.log("Welcome to Zendesk Ticket Viewer!\nTickets are loading ...\n");
 };
 
-const getIndividualTicketID = () => {
-  return readlineSync.question("\nSelect a ticket ID to view:\n=> ");
-};
-
-const getGoToPageNumber = () => {
-  return readlineSync.question("\nSelect a page number to view:\n=> ");
-};
-
+// display comfirmation message when the user successfully quit the program
 const logoutProgramMessage = () => {
   console.log(
     "You have successfully logged out the program. See you next time!"
   );
 };
 
-const loadingTicketsMessage = () => {
-  console.clear();
-  console.log("Welcome to Zendesk Ticket Viewer!\nTickets are loading ...\n");
+// interacting with the user
+// display q query to let the user select an option, return their input after Entered
+const getViewTicketOptions = () => {
+  return readlineSync.question("Select =>");
 };
+
+// display q query to let the user select a page to view, return their input after Entered
+const getGoToPageNumber = () => {
+  return readlineSync.question("\nSelect a page number to view:\n=> ");
+};
+
+// display q query to let the user select a ticket ID to view, return their input after Entered
+const getIndividualTicketID = () => {
+  return readlineSync.question("\nSelect a ticket ID to view:\n=> ");
+};
+
+// exports module funtions
 module.exports = {
   formatErrorDisplay,
   formatTicketListHeader,

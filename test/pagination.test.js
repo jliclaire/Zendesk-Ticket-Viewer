@@ -1,6 +1,6 @@
-const path = require("path");
-const expect = require("chai").expect;
-const fileSystem = require("fs");
+const path = require("path"); // to build directory path for using tickets.json file as fake data for testing
+const expect = require("chai").expect; // require Chai library
+const fileSystem = require("fs"); // to read a json file and parse it to object data
 
 const Pagination = require("../modules/pagination.js");
 
@@ -16,8 +16,8 @@ const loadtestData = () => {
   return JSON.parse(testTicketsData).tickets;
 };
 
-const testTickets = loadtestData();
-const testPagination = new Pagination(testTickets);
+const testTickets = loadtestData(); //load test data from tickets.json
+const testPagination = new Pagination(testTickets); //create a test pagination instance from Pagination class
 
 //test Pagination class methods
 describe("Pagination", () => {
