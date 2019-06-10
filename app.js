@@ -1,14 +1,14 @@
-//import functions to display menu and page layout
+//import display.js from modules to display menu, error messages and console layout
 const display = require("./modules/display.js");
 
-// import modules class Data from data.js
+// import Data class from modules to get tickets data from API request
 const Data = require("./modules/data.js");
 
-// import modules class Pagination from data.js
+// import Pagination class from modules to display tickets list and individual ticket
 const Pagination = require("./modules/pagination.js");
 
 const runTicketViewer = async () => {
-  display.loadingTicketsMessage();
+  display.loadingTicketsMessage(); // display loading data message to user
 
   const dataSet = new Data(); //create an instance of the data came back from API
   await dataSet.getTicketsData();
@@ -21,7 +21,6 @@ const runTicketViewer = async () => {
   while (runningMenu) {
     display.showViewTicketOptions();
     let userSelection = display.getViewTicketOptions();
-
     switch (userSelection) {
       case "0":
         page.displayPage();
@@ -57,4 +56,5 @@ const runTicketViewer = async () => {
   }
 };
 
+// run the application
 runTicketViewer();

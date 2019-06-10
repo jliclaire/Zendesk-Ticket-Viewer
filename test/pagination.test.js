@@ -1,9 +1,8 @@
 const path = require("path");
 const expect = require("chai").expect;
-// const app = require("../app");
 const fileSystem = require("fs");
 
-const Pagination = require("../../modules/pagination.js");
+const Pagination = require("../modules/pagination.js");
 
 //use the data from tickets.json as the fake data to run testing
 const loadtestData = () => {

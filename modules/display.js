@@ -1,5 +1,5 @@
 // npm readline-sync to take user input from command line
-const readline = require("readline-sync");
+const readlineSync = require("readline-sync");
 
 //format to display error message on top of the page
 const formatErrorDisplay = (error = "") => {
@@ -18,7 +18,7 @@ const formatErrorDisplay = (error = "") => {
 //format to display the ticket list header
 const formatTicketListHeader = () => {
   console.clear();
-  console.log(" Ticket_ID | Ticket_Status | Ticket_Subject   \n");
+  console.log("\n Ticket_ID | Ticket_Status | Ticket_Subject   \n");
 };
 
 //format to display the ticket subjects
@@ -63,15 +63,15 @@ const showViewTicketOptions = (error = "") => {
 };
 
 const getViewTicketOptions = () => {
-  return readline.question("Select =>");
+  return readlineSync.question("Select =>");
 };
 
 const getIndividualTicketID = () => {
-  return readline.question("\nSelect a ticket ID to view:\n=> ");
+  return readlineSync.question("\nSelect a ticket ID to view:\n=> ");
 };
 
 const getGoToPageNumber = () => {
-  return readline.question("\nSelect a page number to view:\n=> ");
+  return readlineSync.question("\nSelect a page number to view:\n=> ");
 };
 
 const logoutProgramMessage = () => {
@@ -82,7 +82,7 @@ const logoutProgramMessage = () => {
 
 const loadingTicketsMessage = () => {
   console.clear();
-  console.log("Welcome!\nTickets are loading ...\n");
+  console.log("Welcome to Zendesk Ticket Viewer!\nTickets are loading ...\n");
 };
 module.exports = {
   formatErrorDisplay,
