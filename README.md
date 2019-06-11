@@ -16,29 +16,29 @@ A nodejs CLI application that queries Zendesk API to get a json file of 100 supp
 - readline-sync
 - mocha & chai
 
-# NodeJS Installation
+# Installation
 
-version: v10.15.3
+NodeJS Version: v10.15.3
 
-refer to the link to install node.js https://nodejs.org/en/download/
+Refer to the link to install node.js https://nodejs.org/en/download/
 
-initialize application run
+**Initialize the application**
 
 ```
-npm init
+npm install
 ```
 
-# Development Setup
+**Run the application**
+
+```
+node app.js
+```
+
+# Dependencies
 
 - ### **dotenv**
 
   A zero-dependency module that loads environment variables from a .env file. Install dotenv to keep credentials from uploading to GitHub.
-
-  _install with npm_
-
-  ```
-  npm install dotenv
-  ```
 
   **To run this application, a .env file needs to be setup in the root directory with the authentication credentials, Please kindly find my credentials in my submission email**
 
@@ -46,38 +46,20 @@ npm init
 
   Used to make http get requests from node.js. axios automatic transforms for JSON data.
 
-  _install with npm_
-
-  ```
-  npm install axios
-  ```
-
 * ### **readline-sync**
 
   Used to interact with the user via a console. It displays a query to the user, then returns the input from the user after it has been typed and the Enter key was pressed.
 
-  _install with npm_
-
-  ```
-  npm install readline-sync
-  ```
-
 * ### **Mocha & Chai**
 
   Mocha is a testing framework and Chai is an assertion library. Install Mocha and Chai as devDependencies.
-
-  _install with npm_
-
-  ```
-  npm install mocha chai --save-dev
-  ```
 
 # Running the tests
 
 To run the tests
 
 ```
-mocha
+npm test
 ```
 
 #### Testing Notes:
@@ -95,12 +77,6 @@ I'm sure there is a way to solve this problem. I will keep working on finding a 
 <p><img src="./docs/testing_result.JPG"/></p>
 
 # How to use
-
-#### Run the application
-
-```
-node app.js
-```
 
 The application will start with the default to display the list of the first 15 tickets. At the bottom of the list, a menu with seven options will show as well.
 

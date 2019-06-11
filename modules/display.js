@@ -2,7 +2,7 @@
 const readlineSync = require("readline-sync");
 
 // console display layout/format
-//format to display error message on top of the page
+// format to display error message on top of the page
 const formatErrorDisplay = (error = "") => {
   if (error !== "") {
     console.clear();
@@ -16,13 +16,13 @@ const formatErrorDisplay = (error = "") => {
   }
 };
 
-//format to display the ticket list header
+// format to display the ticket list header
 const formatTicketListHeader = () => {
   console.clear();
   console.log("\n Ticket_ID | Ticket_Status | Ticket_Subject   \n");
 };
 
-//format to display the ticket subjects
+// format to display the ticket subjects
 const formatTicketList = ticket => {
   console.log(
     `     ${ticket.id}     |     ${ticket.status}      | ${ticket.subject}\n`
@@ -36,7 +36,7 @@ const formatCurrentPageNumber = (pageNumber, totalPage) => {
   );
 };
 
-//format to display an individual ticket
+// format to display an individual ticket
 const formatIndividualTicketDisplay = ticket => {
   console.clear();
   console.log(
@@ -94,7 +94,7 @@ const getIndividualTicketID = () => {
   return readlineSync.question("\nSelect a ticket ID to view:\n=> ");
 };
 
-// exports module funtions
+// exports module functions
 module.exports = {
   formatErrorDisplay,
   formatTicketListHeader,

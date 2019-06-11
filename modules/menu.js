@@ -9,8 +9,8 @@ const runMenu = (runningMenuStatus, pagination) => {
     let userSelection = display.getViewTicketOptions(); // get user selection input and store it
     switch (userSelection) {
       case "0":
-        // an option for the user to go back to the page they were diverted from after an error message occured
-        //or after viewing an individual ticket
+        // an option for the user to go back to the page they were diverted from after an error message occurred
+        // or after viewing an individual ticket
         pagination.displayPage();
         break;
       case "1":
@@ -27,7 +27,7 @@ const runMenu = (runningMenuStatus, pagination) => {
         break;
       case "5":
         const goToPageNumber = display.getGoToPageNumber(); // get requested page number from the user
-        pagination.goToPage(goToPageNumber); // o view a specific page
+        pagination.goToPage(goToPageNumber); // to view a specific page
         break;
       case "6":
         const ticketID = display.getIndividualTicketID(); // get requested ticket ID from the user
@@ -45,4 +45,4 @@ const runMenu = (runningMenuStatus, pagination) => {
   }
 };
 
-module.exports = { runMenu }; // export runMenu funtion for app.js to run
+module.exports = { runMenu }; // export runMenu function for app.js to run

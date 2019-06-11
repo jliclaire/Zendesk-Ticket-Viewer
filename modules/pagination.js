@@ -67,7 +67,7 @@ module.exports = class Pagination {
 
   getPageTickets() {
     // find the start index to slice. One is subtracted to make page line up with the array
-    const indexOfTopListItem = (this.currentPageNumber - 1) * 15;
+    const indexOfTopListItem = (this.currentPageNumber - 1) * this.pageSize;
     // find the end index to slice
     const indexOfBottomListItem = indexOfTopListItem + this.pageSize;
     // Get the selected elements from the array and return them

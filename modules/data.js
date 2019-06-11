@@ -16,11 +16,11 @@ const url = {
   }
 };
 
-// create a Data class to receive tickests and store it in function ticketsData
+// create a Data class to receive tickets and store ticketsData
 module.exports = class Data {
   ticketsData() {
     if (this.tickets === undefined) {
-      return;
+      process.exit();
     } else {
       return this.tickets;
     }
@@ -42,7 +42,7 @@ module.exports = class Data {
         display.formatErrorDisplay(errorMessage);
       } else if (statusCode === 503) {
         const errorMessage =
-          "Sorry, looks like we are having some server issues!";
+          "Sorry, looks like we are having some server issues! Please try again later.";
         display.formatErrorDisplay(errorMessage);
       } else {
         const errorMessage = `${error.message}: ${error.response.statusText}`;
