@@ -6,7 +6,7 @@
 
 A nodejs CLI application that queries Zendesk API to get a json file of 100 support tickets. The application will display all the tickets as well as to let the user view one individual ticket.
 
-<p><img src="./docs/screenshot.JPG" width="500"/></p>
+<p><img src="./docs/screenshot.JPG"/></p>
 
 # Tech Tools Used
 
@@ -92,7 +92,7 @@ I wrote a total of 13 tests for this application of which all passed. However, w
 
 I'm sure there is a way to solve this problem. I will keep working on finding a solution for it.
 
-![](/docs/testing_result.jpg)
+<p><img src="./docs/testing_result.JPG"/></p>
 
 # How to use
 
@@ -104,7 +104,7 @@ node app.js
 
 The application will start with the default to display the list of the first 15 tickets. At the bottom of the list, a menu with seven options will show as well.
 
-![](/docs/menu.jpg)
+<p><img src="./docs/menu.JPG"/></p>
 
 #### Pagination options
 
