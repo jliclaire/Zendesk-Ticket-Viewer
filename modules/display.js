@@ -7,11 +7,11 @@ const formatErrorDisplay = (error = "") => {
   if (error !== "") {
     console.clear();
     console.log(
-      "======================================================================================================"
+      "==========================================================================================================="
     );
     console.log(`!!!ERROR: ${error}`);
     console.log(
-      "======================================================================================================\n"
+      "===========================================================================================================\n"
     );
   }
 };
@@ -57,7 +57,7 @@ const showViewTicketOptions = (error = "") => {
   formatErrorDisplay(error);
   console.log("Select a page to display or select a ticket to view:\n ");
   console.log(
-    "0. Back to Current Page  1. First Page  2. Last Page  3. Previous Page  4. Next Page  5. Go to a page  6. View a ticket  7. Quit the program"
+    "0. <= Go Back  1. << First Page  2. Last Page >>  3. < Previous Page  4. Next Page >  5. Go to a page 6. View a ticket  7. Quit the program"
   );
   console.log(
     "\n*********************************************************************************************************************************************************"

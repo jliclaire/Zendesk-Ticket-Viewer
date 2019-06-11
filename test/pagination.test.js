@@ -55,7 +55,7 @@ describe("Pagination", () => {
       testPagination.goToPreviousPage();
       expect(testPagination.currentPageNumber).to.equal(expectPageNumber - 1);
     });
-    it("should set the value of current page number to 1 when reached the first page", () => {
+    it("should return an error message if already on the first page", () => {
       const expectedPageNumber = 1;
       testPagination.currentPageNumber = 1;
       testPagination.goToPreviousPage();
@@ -70,7 +70,7 @@ describe("Pagination", () => {
       testPagination.goToNextPage();
       expect(testPagination.currentPageNumber).to.equal(expectPageNumber + 1);
     });
-    it("should set the value of current page number to 7 when reached the last page", () => {
+    it("should return an error message if already on the last page", () => {
       const expectedPageNumber = 7;
       testPagination.currentPageNumber = 7;
       testPagination.goToNextPage();
@@ -85,7 +85,7 @@ describe("Pagination", () => {
       testPagination.goToPage(5);
       expect(testPagination.currentPageNumber).to.equal(expectedPageNumber);
     });
-    it("should not display a page if the page number passed in does not exist", () => {
+    it("should display an error if the page number passed in does not exist", () => {
       const notExpectedPageNumbers = [-5, 0, 8, 1000, "hi"];
       testPagination.goToPage();
       notExpectedPageNumbers.forEach(element => {

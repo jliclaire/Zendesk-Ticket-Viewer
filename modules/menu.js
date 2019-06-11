@@ -9,7 +9,7 @@ const runMenu = (runningMenuStatus, pagination) => {
     let userSelection = display.getViewTicketOptions(); // get user selection input and store it
     switch (userSelection) {
       case "0":
-        // an option for the user to go back to their current page after an error message occured
+        // an option for the user to go back to the page they were diverted from after an error message occured
         //or after viewing an individual ticket
         pagination.displayPage();
         break;
