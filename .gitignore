@@ -1,2 +1,4 @@
+# comment out for final commit
+
 # Ignore decrypting credentials.
-*.env
+# *.env

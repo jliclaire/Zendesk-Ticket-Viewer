@@ -40,7 +40,7 @@ node app.js
 
   A zero-dependency module that loads environment variables from a .env file. Install dotenv to keep credentials from uploading to GitHub.
 
-  **To run this application, a .env file needs to be setup in the root directory with the authentication credentials, Please kindly find my credentials in my submission email**
+  **To run this application, a .env file needs to be setup in the root directory with the authentication credentials. I understand that the .env file should be in the gitignore file preventing it from uploading to GitHub to be viewed by the public as it contains sensitive information. However, I uploaded this file with my final commit so that the Zendesk Team can get the application running easily.**
 
 * ### **axios**
 
@@ -70,7 +70,7 @@ For this project, I have done testing for the Pagination class methods. I use th
 
 #### Testing Results:
 
-I wrote a total of 13 tests for this application of which all passed. However, when testing, the methods in the Pagination class run with the displaying of the ticket list and errors to the terminal. Therefore, the testing results are interrupted with method call results. For example, as seen from below screenshot, an error message is displayed on top of the terminal as it was called by the Pagination class method: goToPage() with the invalid input "hi" from the testing data array.
+I wrote a total of 13 tests for this application of which all passed. However, when testing, the methods in the Pagination class run with the displaying of the ticket list and errors to the terminal. Therefore, the testing results are interrupted with method call results. For example, as seen from below screenshot, an error message is displayed on top of the terminal as it was called by the Pagination class method: goToPage() with the an invalid input from the testing data array.
 
 I'm sure there is a way to solve this problem. I will keep working on finding a solution for it.
 
@@ -78,7 +78,7 @@ I'm sure there is a way to solve this problem. I will keep working on finding a 
 
 # How to use
 
-The application will start with the default to display the list of the first 15 tickets. At the bottom of the list, a menu with seven options will show as well.
+The application will start with the default to display the list of the first 15 tickets. At the bottom of the list, a menu with eight options will show as well.
 
 <p><img src="./docs/menu.JPG"/></p>
 
@@ -101,7 +101,7 @@ The application will start with the default to display the list of the first 15 
 
 #### Error Handling - An error will occur in the below situations:
 
-- when a user fails to select an option from the default menu
+- when a user fails to select an valid option from the default menu
 - when a user requests a ticket or page that is outside the bounds of the tickets array
 - when a user tries to go to a page that does not exist
 - when a user tries to view a ticket that does not exist
