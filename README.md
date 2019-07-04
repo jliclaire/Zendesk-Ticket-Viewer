@@ -6,6 +6,12 @@
 
 A nodejs CLI application that queries Zendesk API to get a json file of 100 support tickets. The application will display all the tickets as well as to let the user view one individual ticket.
 
+Updated terminal view with submitter name displayed
+
+<p><img src="./docs/updated_display.JPG"/></p>
+
+original terminal view
+
 <p><img src="./docs/display.JPG"/></p>
 
 # Tech Tools Used
