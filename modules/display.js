@@ -5,7 +5,7 @@ const readlineSync = require("readline-sync");
 // format to display error message on top of the page
 const formatErrorDisplay = (error = "") => {
   if (error !== "") {
-    console.clear();
+    // console.clear();
     console.log(
       "==========================================================================================================="
     );
@@ -18,14 +18,18 @@ const formatErrorDisplay = (error = "") => {
 
 // format to display the ticket list header
 const formatTicketListHeader = () => {
-  console.clear();
-  console.log("\n Ticket_ID | Ticket_Status | Ticket_Subject   \n");
+  // console.clear();
+  console.log(
+    "\n Ticket_ID | Ticket_Status |  Submitter_Name  | Ticket_Subject   \n"
+  );
 };
 
 // format to display the ticket subjects
 const formatTicketList = ticket => {
   console.log(
-    `     ${ticket.id}     |     ${ticket.status}      | ${ticket.subject}\n`
+    `     ${ticket.id}     |     ${ticket.status}      |     ${
+      ticket.userName
+    }      | ${ticket.subject}\n`
   );
 };
 
@@ -38,7 +42,7 @@ const formatCurrentPageNumber = (pageNumber, totalPage) => {
 
 // format to display an individual ticket
 const formatIndividualTicketDisplay = ticket => {
-  console.clear();
+  // console.clear();
   console.log(
     "\n*********************************************************************************************************************************************************"
   );
@@ -67,11 +71,11 @@ const showViewTicketOptions = (error = "") => {
 // greeting and goodbye message
 // display greet the user with a data loading message
 const loadingTicketsMessage = () => {
-  console.clear();
+  // console.clear();
   console.log("Welcome to Zendesk Ticket Viewer!\nTickets are loading ...\n");
 };
 
-// display comfirmation message when the user successfully quit the program
+// display confirmation message when the user successfully quit the program
 const logoutProgramMessage = () => {
   console.log(
     "You have successfully logged out the program. See you next time!"

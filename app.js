@@ -11,16 +11,18 @@ const Pagination = require("./modules/pagination.js");
 const menu = require("./modules/menu.js");
 
 const runTicketViewer = async () => {
+  // let runningMenu = true; // running the selection menu while the value of this variable is true
   display.loadingTicketsMessage(); // display loading data message to user
 
   const dataSet = new Data(); //create an instance of the Data class
   await dataSet.getTicketsData(); // wait for data get back from API
+  await dataSet.addToTicket(); //wait for the username to add to each ticket
   allTickets = dataSet.ticketsData(); // store all tickets data
 
   const page = new Pagination(allTickets); // create an instance of the pagination class
   page.displayPage(); // default display the list of the first 15 tickets
 
-  let runningMenu = true; // running the selection menu while the value of this variable is true
+  runningMenu = true; // running the selection menu while the value of this variable is true
   menu.runMenu(runningMenu, page); // display to users the options to select. pass pagination class method with all the tickets data
 };
 

@@ -3,7 +3,6 @@ const display = require("./display.js");
 
 // function to display all available options for user to select.
 const runMenu = (runningMenuStatus, pagination) => {
-  // when the application is running, keep showing users the menu to select
   while (runningMenuStatus) {
     display.showViewTicketOptions(); // display the menu in console
     let userSelection = display.getViewTicketOptions(); // get user selection input and store it
